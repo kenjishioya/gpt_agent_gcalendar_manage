@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  streamlit:
+    image: gpt_agent_gcalendar_manage  # イメージに名前を設定
+    build: ..
+    ports:
+      - "8501:8501"
+    env_file:
+      - ./.env
+    volumes:
+      - ../src/gpt_agent_gcalendar_manage:/app
+      - ../README.md:/app/assets/introduction.md
+      - ../cred/gcp_service_account.json:/app/cred/gcp_service_account.json
+    command: streamlit run はじめに.py
